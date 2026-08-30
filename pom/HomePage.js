@@ -16,6 +16,10 @@ class HomePage {
         this.productsLink = page.getByRole('link', { name: 'Products' });
         this.cartLink = page.getByText('Cart', { exact: true });
 
+
+        this.viewProductLink = page.getByRole('link', {name: 'View Product'});
+
+
         this.subscriptionHeading = page.getByRole('heading', { name: 'Subscription' });
         this.subscriptionEmailBox = page.getByPlaceholder('Your email address');
         this.subscriptionButton = page.locator('#subscribe');
@@ -82,6 +86,11 @@ class HomePage {
 
     async contactUs() {
         await this.contactUsLink.click();
+    };
+
+
+    async clickOnViewProduct(index){
+        await this.viewProductLink.nth(index).click();
     };
 
     async verifySubscriptionHeadingIsDisplayed(){

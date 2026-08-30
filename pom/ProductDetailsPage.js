@@ -10,9 +10,14 @@ class ProductDetailsPage{
         this.productName = page.locator('.product-information >> h2');
         this.category = page.getByText('Category: ');
         this.price = page.getByText('Rs. ');
+        this.quanityInput = page.locator('input#quantity');
+        this.addToCartButton = page.getByRole('button', { name: 'Add to cart' });
         this.availability = page.getByText('Availability: ');
         this.condition = page.getByText('Condition: ');
         this.brand = page.getByText('Brand: ');
+        
+        this.viewCartLink = page.getByRole('link', { name: 'View Cart' });
+        this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
 
         //Valus
 
@@ -23,6 +28,23 @@ class ProductDetailsPage{
             new RegExp(`automationexercise\\.com/product_details/${productNumber}`)
         );
     };
+
+    async updateQuantity(quantity){
+        await this.quanityInput.fill(quantity);
+
+    };
+
+    async clickOnAddToCart(){
+        await this.addToCartButton.click();
+    };
+
+    async clickOnViewCart(){
+        await this.viewCartLink.click();
+    };
+
+    async clickOnContinueShopping(){
+        await this.continueShoppingButton.click();
+    }
 
     async verifyTheProductDetails(productName, category, price, availability, condition, brand){
 
