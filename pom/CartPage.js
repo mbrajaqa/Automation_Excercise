@@ -6,6 +6,8 @@ class CartPage {
 
         this.page = page;
 
+        this.shoppingCart = page.getByText('Shopping Cart');
+
 
         //Cart Info Table Locators
         this.cartTable = page.getByRole('table');
@@ -25,12 +27,19 @@ class CartPage {
         this.itemCategory = this.itemDescription.locator('p');
 
 
+        this.checkOutLink = page.getByText('Proceed To Checkout', { exact: true });
+        this.registerOrLoginLink = page.getByRole('link', {name: 'Register / Login'});
+        this.continueOnCartButton = page.getByRole('button', { name: 'Continue On Cart' });
 
 
         this.subscriptionHeading = page.getByRole('heading', { name: 'Subscription' });
         this.subscribeEmail = page.getByPlaceholder('Your email address');
         this.subcribeButton = page.locator('#subscribe');
         this.subcribeSuccessMessage = page.getByText('You have been successfully subscribed!');
+    };
+
+    async verifyCartPageIsDisplayed(){
+        await expect(this.shoppingCart).toBeVisible();
     };
 
     async verifySubscriptionHeadingIsDisplayed(){
@@ -82,6 +91,18 @@ class CartPage {
         const totalPrice = `Rs. ${quantity * price}`
 
         await this.verifyProductTotalPrice(index, totalPrice);
+    };
+
+    async clickOnProceedToCheckOut (){
+        await this.checkOutLink.click();
+    };
+
+    async clickOnRegisterOrLoginLink(){
+        await this.registerOrLoginLink.click();
+    };
+
+    async clickOnContinueOnCartButton(){
+        await this.continueOnCartButton.click();
     };
 
 

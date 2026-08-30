@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test';
+const { expect } = require ('@playwright/test');
 
-exports.AccountCreatedPage = class AccountCreatedPage {
+class AccountCreatedPage {
     
     constructor (page) {
         this.page = page;
@@ -25,3 +25,5 @@ exports.AccountCreatedPage = class AccountCreatedPage {
         //await this.page.waitForLoadState('networkidle');
     };
 };
+
+module.exports = {AccountCreatedPage};

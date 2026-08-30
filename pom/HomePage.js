@@ -16,9 +16,10 @@ class HomePage {
         this.productsLink = page.getByRole('link', { name: 'Products' });
         this.cartLink = page.getByText('Cart', { exact: true });
 
-
+        this.products = page.locator('div.single-products');
         this.viewProductLink = page.getByRole('link', {name: 'View Product'});
-
+        this.viewCartLink = page.getByRole('link', { name: 'View Cart' });
+        this.continueShoppingButton = page.getByText('Continue Shopping');
 
         this.subscriptionHeading = page.getByRole('heading', { name: 'Subscription' });
         this.subscriptionEmailBox = page.getByPlaceholder('Your email address');
@@ -88,10 +89,24 @@ class HomePage {
         await this.contactUsLink.click();
     };
 
+    async addProductToCartByIndex(index){
+
+        const product = this.products.nth(index);
+        await product.hover();
+        await product.locator('.product-overlay a.add-to-cart').click();
+    };
 
     async clickOnViewProduct(index){
         await this.viewProductLink.nth(index).click();
     };
+
+    async clickOnViewCart(){
+        await this.viewCartLink.click();
+    };
+
+    async clickOnContinueShopping(){
+        await this.continueShoppingButton.click();
+    }
 
     async verifySubscriptionHeadingIsDisplayed(){
 

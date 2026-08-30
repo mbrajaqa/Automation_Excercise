@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test';
+const { expect } = require ('@playwright/test');
 
-exports.AccountDeletedPage = class AccountDeletedPage {
+class AccountDeletedPage {
     constructor (page) {
         this.page = page;
         this.url = 'https://www.automationexercise.com/delete_account';
@@ -25,5 +25,7 @@ exports.AccountDeletedPage = class AccountDeletedPage {
 
         await this.continueButton.click();
         
-    }
+    };
 };
+
+module.exports = {AccountDeletedPage};
