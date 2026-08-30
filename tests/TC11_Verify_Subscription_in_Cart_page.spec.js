@@ -3,7 +3,7 @@ const {test } = require ('@playwright/test');
 const { HomePage } = require('../pom/HomePage');
 const { CartPage } = require('../pom/CartPage');
 
-test('test', async ({ page }) => {
+test('Verify Subscription in Cart page', async ({ page }) => {
 
   const homePage = new HomePage(page);
   const cartPage = new CartPage(page);

@@ -8,13 +8,20 @@ class ProductsPage {
         this.allProductsHeading = page.getByRole('heading', { name: 'All Products' });
         this.searchedProductsHeading = page.getByRole('heading', { name: 'Searched Products' });
 
-        this.allProducts = page.locator('div.features_items >> div.col-sm-4');
+        this.products = page.locator('div.single-products');
+        this.addToCartButton = this.products.getByText('Add to cart');
+        this.viewProductLink = this.products.getByRole('link', {name:'View Product'});
+        this.nameSection = this.products.locator('p');
 
-        this.viewProductLink = this.allProducts.getByRole('link', {name:'View Product'});
-        this.nameSection = this.allProducts.locator('p');
+        this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
+        this.viewCartLink = page.getByRole('link', { name: 'View Cart' });
+
+        
 
         this.searchBox = page.getByPlaceholder('Search Product');
         this.searchIcon = page.locator('#submit_search');
+
+
         
     };
 
@@ -23,7 +30,7 @@ class ProductsPage {
     };
 
     async verifyProductListDisplayed(){
-        await expect(this.allProducts.last()).toBeVisible();
+        await expect(this.products.last()).toBeVisible();
     };
 
     async clickOnViewProduct (productNumber){
@@ -52,6 +59,25 @@ class ProductsPage {
 
 
     };
+
+    async addProductToCartByIndex(index){
+
+        const product = this.products.nth(index);
+        await product.hover();
+        await product.locator('.product-overlay a.add-to-cart').click();
+    };
+
+    async clickOnContinueShopping(){
+        
+        await this.continueShoppingButton.click();
+    };
+
+    async clickOnViewCart(){
+
+        await this.viewCartLink.click();
+    };
+
+
 }
 
 module.exports = {ProductsPage};
